@@ -1,0 +1,45 @@
+-->1. You are given two numbers n and k. You are required to rotate n, k times to the right. If k is positive, rotate to the right i.e. remove rightmost digit and make it leftmost. Do the reverse for negative value of k. Also k can have an absolute value larger than number of digits in n.
+2. Take as input n and k.
+3. Print the rotated number.
+4. Note - Assume that the number of rotations will not cause leading 0's in the result. e.g. such an input will not be given
+   n = 12340056
+   k = 3
+   r = 05612340
+
+--ANS--
+#include<bits/stdc++.h>
+using namespace std;
+int digits(int n)
+{
+    int count=0;
+    while(n)
+    {
+        
+        n=n/10;
+        count++;
+    }
+    return count;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int x=n;
+    int k;
+    cin>>k;
+    int y;
+    int actual_digits=digits(n);
+    k=k%actual_digits;
+    if(k<0)
+    {
+        k=k+actual_digits;
+        
+    }
+    while(k--)
+    {
+        int val = x%10;
+        x=x/10;
+        x+=pow(10,actual_digits-1)*val;
+    }
+    cout<<x<<endl;
+}
